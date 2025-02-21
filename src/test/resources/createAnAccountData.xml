@@ -1,0 +1,17 @@
+<dataSets>
+    <dataSet_1>
+        <firstName>Popescu</firstName>
+        <lastName>Maria</lastName>
+        <email>testEmail{random}@test.com</email>
+        <password>aaaBBB123</password>
+        <confirmPassword>aaaBBB123</confirmPassword>
+    </dataSet_1>
+
+    <dataSet_2>
+        <firstName>Popescu</firstName>
+        <lastName>Maria</lastName>
+        <email>testEmail{random}</email>
+        <password>aaaBBB123</password>
+        <confirmPassword>aaaBBB123</confirmPassword>
+    </dataSet_2>
+</dataSets>
