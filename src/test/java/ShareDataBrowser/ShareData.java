@@ -13,7 +13,7 @@ public class ShareData {
     }
 
     public void clearBrowser() {
-     //   driver.quit();
+        driver.quit();
     }
 
     public WebDriver getDriver() {
