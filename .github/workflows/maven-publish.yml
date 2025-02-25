@@ -9,7 +9,7 @@ on:
       suite:
         description: 'chose automation suite: RegressionSuite or SmokeSuite'
         required: true
-        default: SmokeSuite
+        default: RegressionSuite
       browser:
         description: 'chose browser'
         required: true
