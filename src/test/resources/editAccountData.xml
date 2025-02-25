@@ -1,0 +1,10 @@
+<dataSets>
+    <dataSet_1>
+        <firstName>New Popescu</firstName>
+        <lastName>New Maria</lastName>
+        <email>testEmail{random}@test.com</email>
+        <newPassword>aaaBBB123new</newPassword>
+        <confirmNewPassword>aaaBBB123new</confirmNewPassword>
+    </dataSet_1>
+
+</dataSets>
