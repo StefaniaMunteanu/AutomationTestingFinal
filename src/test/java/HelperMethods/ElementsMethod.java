@@ -2,6 +2,9 @@ package HelperMethods;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import software.amazon.awssdk.services.s3.endpoints.internal.Value;
+
+import java.util.Objects;
 
 public class ElementsMethod {
     WebDriver diver;
@@ -15,7 +18,20 @@ public class ElementsMethod {
         element.click();
     }
 
-    public void sendTextToTextbox(WebElement element, String text){
+    public void writeInTextbox(WebElement element, String text){
+
+        if(!Objects.requireNonNull(element.getAttribute("value")).isEmpty()) {
+            element.clear();
+        }
+        element.sendKeys(text);
+    }
+
+    public void clearTextbox(WebElement element) {
+        element.clear();
+    }
+
+    public void writeInTextboxAfterClear(WebElement element, String text){
+        clearTextbox(element);
         element.sendKeys(text);
     }
 }

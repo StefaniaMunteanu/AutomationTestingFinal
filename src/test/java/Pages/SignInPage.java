@@ -30,8 +30,8 @@ public class SignInPage {
 
 
     public void fillUserData(signInObjectData data){
-        elementsMethod.sendTextToTextbox(emailField, data.getEmail());
-        elementsMethod.sendTextToTextbox(passwordField, data.getPassword());
+        elementsMethod.writeInTextbox(emailField, data.getEmail());
+        elementsMethod.writeInTextbox(passwordField, data.getPassword());
 
     }
 

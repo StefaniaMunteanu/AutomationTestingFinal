@@ -40,12 +40,12 @@ public class CreateAnAccountPage {
     WebElement createAnAccountButton;
 
     public void fillCreateAnAccountInfo(CreateAnAccountObjectData data){
-        elementsMethod.sendTextToTextbox(firstNameField, data.getFirstName());
-        elementsMethod.sendTextToTextbox(lastNameField, data.getLastName());
+        elementsMethod.writeInTextbox(firstNameField, data.getFirstName());
+        elementsMethod.writeInTextbox(lastNameField, data.getLastName());
         emailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
-        elementsMethod.sendTextToTextbox(emailField, emailFinal);
-        elementsMethod.sendTextToTextbox(passwordField, data.getPassword());
-        elementsMethod.sendTextToTextbox(confirmPasswordField, data.getConfirmPassword());
+        elementsMethod.writeInTextbox(emailField, emailFinal);
+        elementsMethod.writeInTextbox(passwordField, data.getPassword());
+        elementsMethod.writeInTextbox(confirmPasswordField, data.getConfirmPassword());
 
     }
 
