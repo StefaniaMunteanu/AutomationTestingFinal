@@ -14,15 +14,17 @@ import Pages.HomePage;
 import ShareDataBrowser.ShareData;
 import xmlReaderUtility.xmlReader;
 
+import java.sql.SQLException;
 import java.util.Map;
 import java.util.Random;
 
 public class CreateAnAccountTest extends Hooks {
     CreateAnAccount createAnAccount;
+    CreateAnAccountPage createAnAccountPage;
     private Map<String, CreateAnAccountObjectData> createAnAccountObjectDataMap;
 
     @Test
-    public void createAnAccountCorrectDataTest() {
+    public void createAnAccountCorrectDataTest() throws SQLException {
         createAnAccountObjectDataMap = xmlReader.loadData("src/test/resources/createAnAccountData.xml", CreateAnAccountObjectData.class);
         CreateAnAccountObjectData data = createAnAccountObjectDataMap.get("dataSet_1");
 
@@ -36,13 +38,13 @@ public class CreateAnAccountTest extends Hooks {
         ChainTestListener.log("check that the account was created");
 
         String result = getDriver().findElement(By.xpath("//*[@class='box-content']/p")).getText();
-        Assert.assertEquals(data.getFirstName() + " " + data.getLastName() +"\n"+ createAnAccount.getEmail(), result);
+        Assert.assertEquals(data.getFirstName() + " " + data.getLastName() +"\n"+ data.getEmail(), result);
         LoggerUtility.infoTest("check the account data");
         ChainTestListener.log("check the account data");
     }
 
     @Test
-    public void createAnAccountWithInvalidEmail() {
+    public void createAnAccountWithInvalidEmail() throws SQLException {
         createAnAccountObjectDataMap = xmlReader.loadData("src/test/resources/createAnAccountData.xml", CreateAnAccountObjectData.class);
         CreateAnAccountObjectData data = createAnAccountObjectDataMap.get("dataSet_2");
 

@@ -2,21 +2,25 @@ package Pages;
 
 import HelperMethods.ElementsMethod;
 import ObjectData.CreateAnAccountObjectData;
+import database.queries.UserInfoTable;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.sql.SQLException;
 import java.util.Random;
 
 public class CreateAnAccountPage {
     WebDriver driver;
     ElementsMethod elementsMethod;
     public String emailFinal;
+    UserInfoTable userInfoTable;
 
-    public CreateAnAccountPage(WebDriver driver) {
+    public CreateAnAccountPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.elementsMethod = new ElementsMethod(driver);
+        userInfoTable = new UserInfoTable();
         PageFactory.initElements(driver, this);
 
     }
@@ -42,8 +46,8 @@ public class CreateAnAccountPage {
     public void fillCreateAnAccountInfo(CreateAnAccountObjectData data){
         elementsMethod.writeInTextbox(firstNameField, data.getFirstName());
         elementsMethod.writeInTextbox(lastNameField, data.getLastName());
-        emailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
-        elementsMethod.writeInTextbox(emailField, emailFinal);
+       // emailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
+        elementsMethod.writeInTextbox(emailField, data.getEmail());
         elementsMethod.writeInTextbox(passwordField, data.getPassword());
         elementsMethod.writeInTextbox(confirmPasswordField, data.getConfirmPassword());
 
@@ -52,6 +56,17 @@ public class CreateAnAccountPage {
     public void clickOnSubmit() {
         elementsMethod.clickOnElement(createAnAccountButton);
     }
+
+    public void addEntryInTable(CreateAnAccountObjectData data) throws SQLException {
+        userInfoTable.insertTableObject(data);
+
+    }
+
+    public void updateEntryInTable (CreateAnAccountObjectData data, Integer id) throws SQLException {
+        userInfoTable.updateEntryById(data, id);
+    }
+
+
 
 
 }

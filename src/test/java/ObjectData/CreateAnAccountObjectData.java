@@ -1,29 +1,24 @@
 package ObjectData;
 
+import lombok.Getter;
+
+@Getter
 public class CreateAnAccountObjectData {
     private String firstName;
     private String lastName;
     private String email;
+    private String emailFinal;
     private String password;
     private String confirmPassword;
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public String getEmail() {
-        return email;
+        if (emailFinal == null) {
+            generateEmailFinal();
+        }
+        return emailFinal;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getConfirmPassword() {
-        return confirmPassword;
+    private void generateEmailFinal(){
+        emailFinal = email.replace("{random}", System.currentTimeMillis()+"");
     }
 }

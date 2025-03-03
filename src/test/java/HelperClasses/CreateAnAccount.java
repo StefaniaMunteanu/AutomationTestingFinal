@@ -8,19 +8,23 @@ import Pages.HomePage;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.openqa.selenium.WebDriver;
 
+import java.sql.SQLException;
+
 
 public class CreateAnAccount{
     WebDriver driver;
     HomePage homePage;
     CreateAnAccountPage createAnAccountPage;
 
-    public CreateAnAccount(WebDriver driver) {
+    public CreateAnAccount(WebDriver driver) throws SQLException {
         this.driver = driver;
         createAnAccountPage = new CreateAnAccountPage(driver);
     }
 
-    public void CreateAccount(CreateAnAccountObjectData data){
+    public void CreateAccount(CreateAnAccountObjectData data) throws SQLException {
         homePage = new HomePage(driver);
+
+        createAnAccountPage.addEntryInTable(data);
 
         ChainTestListener.log("Test started");
 

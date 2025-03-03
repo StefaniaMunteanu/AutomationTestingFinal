@@ -14,6 +14,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import xmlReaderUtility.xmlReader;
 
+import java.sql.SQLException;
 import java.time.Duration;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class EditTheAccountTest extends Hooks {
     private Map<String, EditAccountObjectData> editAccountObjectDataMap;
 
     @Test
-    public void editAccountInfo(){
+    public void editAccountInfo() throws SQLException {
         createAnAccountObjectDataMap = xmlReader.loadData("src/test/resources/createAnAccountData.xml", CreateAnAccountObjectData.class);
         CreateAnAccountObjectData data = createAnAccountObjectDataMap.get("dataSet_1");
 
