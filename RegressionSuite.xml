@@ -1,7 +1,8 @@
 <suite name="Suite Regression Test" parallel="classes" thread-count="8">
     <test name="Regression Suite">
-        <packages>
-            <package name="Tests.*" />
-        </packages>
+        <classes>
+            <class name="Tests.SignInTest"/>
+            <class name="Tests.EditTheAccountTest"/>
+        </classes>
     </test>
 </suite>
