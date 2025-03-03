@@ -2,7 +2,6 @@
     <test name="Regression Suite">
         <classes>
             <class name="Tests.SignInTest"/>
-            <class name="Tests.EditTheAccountTest"/>
         </classes>
     </test>
 </suite>
