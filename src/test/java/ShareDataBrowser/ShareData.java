@@ -1,7 +1,6 @@
 package ShareDataBrowser;
 
-import ShareDataBrowser.Browser.BrowserFactory;
-import org.openqa.selenium.JavascriptExecutor;
+import ShareDataBrowser.browser.BrowserFactory;
 import org.openqa.selenium.WebDriver;
 
 public class ShareData {

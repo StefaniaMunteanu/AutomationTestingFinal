@@ -1,7 +1,6 @@
 package ShareDataBrowser;
 
-import ChainTestUtility.ChainUtility;
-import Logger.LoggerUtility;
+import logger.LoggerUtility;
 import com.aventstack.chaintest.plugins.ChainTestListener;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -33,7 +32,7 @@ public class Hooks extends ShareData {
             LoggerUtility.errorLog(result.getThrowable().getMessage());
         }
         LoggerUtility.endTestCase(testName);
-      //  clearBrowser();
+        clearBrowser();
     }
 
     @AfterSuite

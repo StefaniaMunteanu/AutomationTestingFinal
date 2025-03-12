@@ -1,7 +1,7 @@
 package database;
 
-import configUtility.ConfigReader;
-import configUtility.Configuration;
+import config.ConfigReader;
+import config.Configuration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

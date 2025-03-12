@@ -1,9 +1,7 @@
 package database.queries;
 
-import HelperClasses.CreateAnAccount;
-import ObjectData.CreateAnAccountObjectData;
-import ObjectData.EditAccountObjectData;
-import software.amazon.awssdk.services.s3.endpoints.internal.Value;
+import data.CreateAnAccountObjectData;
+import data.EditAccountObjectData;
 
 import java.sql.SQLException;
 import java.sql.Statement;
