@@ -33,7 +33,7 @@ public class Hooks extends ShareData {
             LoggerUtility.errorLog(result.getThrowable().getMessage());
         }
         LoggerUtility.endTestCase(testName);
-        clearBrowser();
+      //  clearBrowser();
     }
 
     @AfterSuite

@@ -3,19 +3,23 @@ package Pages;
 import HelperMethods.ElementsMethod;
 import ObjectData.CreateAnAccountObjectData;
 import ObjectData.EditAccountObjectData;
+import database.queries.UserInfoTable;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.sql.SQLException;
+
 public class EditAccountPage {
     WebDriver driver;
     ElementsMethod elementsMethod;
-    public String newEmailFinal;
+    UserInfoTable userInfoTable;
 
-    public EditAccountPage(WebDriver driver) {
+    public EditAccountPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.elementsMethod = new ElementsMethod(driver);
+        userInfoTable = new UserInfoTable();
         PageFactory.initElements(driver, this);
     }
 
@@ -74,8 +78,11 @@ public class EditAccountPage {
 
     public void changeEmailInfo(EditAccountObjectData data) {
 
-        newEmailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
-        elementsMethod.writeInTextbox(emailField, newEmailFinal);
+        //newEmailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
+
+      //  elementsMethod.writeInTextbox(emailField, data.getEmail());
+
+        elementsMethod.writeInTextbox(emailField, data.getEmail());
 
     }
 
@@ -86,6 +93,10 @@ public class EditAccountPage {
     public void inputNewPassword(EditAccountObjectData data){
         elementsMethod.writeInTextbox(newPasswordField, data.getNewPassword());
         elementsMethod.writeInTextbox(newPasswordConfirmationField, data.getConfirmNewPassword());
+    }
+
+    public void updateEmailInTable (CreateAnAccountObjectData data, EditAccountObjectData data2) throws SQLException {
+        userInfoTable.updateEmailAfterEdit(data, data2);
     }
 
 

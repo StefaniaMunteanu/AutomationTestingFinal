@@ -1,0 +1,7 @@
+<suite name="Suite All Tests" parallel="classes" thread-count="8">
+    <test name="All tests">
+        <packages>
+            <package name="Tests.*"/>
+        </packages>
+    </test>
+</suite>

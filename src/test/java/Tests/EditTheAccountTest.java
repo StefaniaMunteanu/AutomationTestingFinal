@@ -65,5 +65,8 @@ public class EditTheAccountTest extends Hooks {
 
         Assert.assertTrue(result.contains("You saved the account information."), "Edit information saved.");
 
+        createAnAccount.addEntryInTable(data);
+        editAccountPage.updateEmailInTable(data, data2);
+
     }
 }

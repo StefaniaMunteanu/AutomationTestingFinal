@@ -3,28 +3,34 @@ package HelperClasses;
 
 import Logger.LoggerUtility;
 import ObjectData.CreateAnAccountObjectData;
+import ObjectData.EditAccountObjectData;
 import Pages.CreateAnAccountPage;
+import Pages.EditAccountPage;
 import Pages.HomePage;
+import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
+import database.queries.UserInfoTable;
 import org.openqa.selenium.WebDriver;
 
 import java.sql.SQLException;
 
 
-public class CreateAnAccount{
+public class CreateAnAccount {
     WebDriver driver;
     HomePage homePage;
     CreateAnAccountPage createAnAccountPage;
+    EditAccountPage editAccountPage;
+    UserInfoTable userInfoTable;
 
     public CreateAnAccount(WebDriver driver) throws SQLException {
         this.driver = driver;
         createAnAccountPage = new CreateAnAccountPage(driver);
+        editAccountPage = new EditAccountPage(driver);
+        userInfoTable = new UserInfoTable();
     }
 
     public void CreateAccount(CreateAnAccountObjectData data) throws SQLException {
         homePage = new HomePage(driver);
-
-        createAnAccountPage.addEntryInTable(data);
 
         ChainTestListener.log("Test started");
 
@@ -41,7 +47,12 @@ public class CreateAnAccount{
         ChainTestListener.log("click on submit");
     }
 
-    public String getEmail() {
-        return createAnAccountPage.emailFinal;
+    public void addEntryInTable(CreateAnAccountObjectData data) throws SQLException {
+        userInfoTable.insertTableObject(data);
+
+
     }
+
+    //
+
 }

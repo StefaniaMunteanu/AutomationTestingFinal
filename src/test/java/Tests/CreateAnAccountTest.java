@@ -5,9 +5,13 @@ import Logger.LoggerUtility;
 import ObjectData.CreateAnAccountObjectData;
 import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
+import org.apache.maven.surefire.junitcore.JUnitCoreProvider;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Request;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.ITestResult;
 import org.testng.annotations.Test;
 import Pages.CreateAnAccountPage;
 import Pages.HomePage;
@@ -41,7 +45,18 @@ public class CreateAnAccountTest extends Hooks {
         Assert.assertEquals(data.getFirstName() + " " + data.getLastName() +"\n"+ data.getEmail(), result);
         LoggerUtility.infoTest("check the account data");
         ChainTestListener.log("check the account data");
+
+        Assert.assertEquals("Thank you for registering with Main Website Store.", getDriver().findElement(By.xpath("//*[@class='page messages']/div/div/div/div[1]")).getText());
+        LoggerUtility.infoTest("Check the register account validation message.");
+        ChainTestListener.log("Check the register account validation message.");
+
+        createAnAccount.addEntryInTable(data);
+        LoggerUtility.infoTest("Data added in the database.");
+        ChainTestListener.log("Data added in the database.");
+
     }
+
+
 
     @Test
     public void createAnAccountWithInvalidEmail() throws SQLException {

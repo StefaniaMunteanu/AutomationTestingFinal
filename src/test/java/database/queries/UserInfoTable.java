@@ -2,6 +2,7 @@ package database.queries;
 
 import HelperClasses.CreateAnAccount;
 import ObjectData.CreateAnAccountObjectData;
+import ObjectData.EditAccountObjectData;
 import software.amazon.awssdk.services.s3.endpoints.internal.Value;
 
 import java.sql.SQLException;
@@ -23,13 +24,12 @@ public class UserInfoTable extends CommonTable{
         stm.execute(query);
     }
 
-    public synchronized void updateEntryById(CreateAnAccountObjectData data, Integer idUserInfoTable) throws SQLException{
+    public synchronized void updateEmailAfterEdit(CreateAnAccountObjectData data, EditAccountObjectData data2 ) throws SQLException{
         Statement stm = dbConnection.getConnection().createStatement();
-        String query = "update userInfo set lastName = '" + data.getLastName() +
-                "' where id = " + idUserInfoTable + ";";
+        String query = "update userInfo set email = '" + data2.getEmail() +
+                "' where email = '" + data.getEmail() + "';";
 
         stm.execute(query);
     }
-
 
 }

@@ -15,12 +15,10 @@ public class CreateAnAccountPage {
     WebDriver driver;
     ElementsMethod elementsMethod;
     public String emailFinal;
-    UserInfoTable userInfoTable;
 
     public CreateAnAccountPage(WebDriver driver) throws SQLException {
         this.driver = driver;
         this.elementsMethod = new ElementsMethod(driver);
-        userInfoTable = new UserInfoTable();
         PageFactory.initElements(driver, this);
 
     }
@@ -57,14 +55,9 @@ public class CreateAnAccountPage {
         elementsMethod.clickOnElement(createAnAccountButton);
     }
 
-    public void addEntryInTable(CreateAnAccountObjectData data) throws SQLException {
-        userInfoTable.insertTableObject(data);
 
-    }
 
-    public void updateEntryInTable (CreateAnAccountObjectData data, Integer id) throws SQLException {
-        userInfoTable.updateEntryById(data, id);
-    }
+
 
 
 
