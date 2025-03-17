@@ -8,11 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 
 public class HomePage {
     WebDriver driver;
-    ElementsMethod elementsMethod;
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        this.elementsMethod = new ElementsMethod(driver);
         PageFactory.initElements(driver, this);
     }
 
@@ -22,12 +20,27 @@ public class HomePage {
     @FindBy(xpath = "//*[@class='panel header']/ul[@class='header links']/li[2]")
     WebElement signInLink;
 
+    @FindBy(id = "ui-id-4")
+    WebElement womenMenuItem;
+
+    @FindBy(id = "ui-id-10")
+    WebElement bottomsWomenMenuItem;
+
+    @FindBy(id = "ui-id-15")
+    WebElement pantsWomenMenuItem;
+
     public void clickCreateAnAccount() {
-        elementsMethod.clickOnElement(createAnAccountLink);
+        ElementsMethod.clickOnElement(createAnAccountLink);
     }
 
     public void clickSignIn() {
-        elementsMethod.clickOnElement(signInLink);
+        ElementsMethod.clickOnElement(signInLink);
+    }
+
+    public void navigateMenuWomenPants() {
+        ElementsMethod.moveToElementInMenu(driver, womenMenuItem);
+        ElementsMethod.moveToElementInMenu(driver, bottomsWomenMenuItem);
+        ElementsMethod.clickOnElementInMenu(driver, pantsWomenMenuItem);
     }
 
   }

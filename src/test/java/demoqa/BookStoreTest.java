@@ -10,10 +10,13 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import static org.testng.Assert.*;
+
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 public class BookStoreTest {
     String username;
@@ -26,7 +29,6 @@ public class BookStoreTest {
         createAccount();
         generateToken();
         getAccount();
-
         getAllBooks();
 
     }

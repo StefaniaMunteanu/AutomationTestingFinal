@@ -1,33 +1,32 @@
 package tests;
 
-import helper.classes.CreateAnAccount;
-import logger.LoggerUtility;
-import data.CreateAnAccountObjectData;
-import data.EditAccountObjectData;
-import pages.EditAccountPage;
 import ShareDataBrowser.Hooks;
 import com.aventstack.chaintest.plugins.ChainTestListener;
+import data.CreateAnAccountObjectData;
+import data.EditAccountObjectData;
+import helper.classes.CreateAnAccount;
+import logger.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 import org.testng.annotations.Test;
+import pages.EditAccountPage;
 import xmlReaderUtility.XmlReader;
 
 import java.sql.SQLException;
 import java.time.Duration;
 import java.util.Map;
 
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 public class EditTheAccountTest extends Hooks {
     EditAccountPage editAccountPage;
-
     CreateAnAccount createAnAccount;
-    private Map<String, CreateAnAccountObjectData> createAnAccountObjectDataMap;
-    private Map<String, EditAccountObjectData> editAccountObjectDataMap;
 
     @Test
     public void editAccountInfo() throws SQLException {
-        createAnAccountObjectDataMap = XmlReader.loadData("src/test/resources/createAnAccountData.xml", CreateAnAccountObjectData.class);
+        Map<String, CreateAnAccountObjectData> createAnAccountObjectDataMap = XmlReader.loadData("src/test/resources/createAnAccountData.xml", CreateAnAccountObjectData.class);
         CreateAnAccountObjectData data = createAnAccountObjectDataMap.get("dataSet_1");
 
         createAnAccount = new CreateAnAccount(getDriver());
@@ -36,25 +35,21 @@ public class EditTheAccountTest extends Hooks {
         editAccountPage = new EditAccountPage(getDriver());
         editAccountPage.clickOnEditAccount();
 
-        editAccountObjectDataMap = XmlReader.loadData("src/test/resources/editAccountData.xml", EditAccountObjectData.class);
+        Map<String, EditAccountObjectData> editAccountObjectDataMap = XmlReader.loadData("src/test/resources/editAccountData.xml", EditAccountObjectData.class);
         EditAccountObjectData data2 = editAccountObjectDataMap.get("dataSet_1");
 
         editAccountPage.editFirstLastNameInfo(data2);
-
         editAccountPage.selectChangeEmailOption();
         editAccountPage.selectChangePasswordOption();
-
         editAccountPage.changeEmailInfo(data2);
-
         editAccountPage.inputCurrentPassword(data.getPassword());
         editAccountPage.inputNewPassword(data2);
-
         editAccountPage.clickOnSave();
 
 
         String expectedUrl = "https://magento.softwaretestingboard.com/customer/account/login/";
         String actualUrl = getDriver().getCurrentUrl();
-        Assert.assertEquals(actualUrl, expectedUrl, "URL after the account edit doesn't match.");
+        assertEquals(actualUrl, expectedUrl, "URL after the account edit doesn't match.");
         LoggerUtility.infoTest("check that the account was saved after edit");
         ChainTestListener.log("check that the account was saved after edit");
 
@@ -63,7 +58,7 @@ public class EditTheAccountTest extends Hooks {
         wait.until(ExpectedConditions.numberOfElementsToBe(By.xpath("//*[@class='page messages']//*[@class='message-success success message']"), 1));
         String result = getDriver().findElement(By.xpath("//*[@class='page messages']//*[@class='message-success success message']")).getText();
 
-        Assert.assertTrue(result.contains("You saved the account information."), "Edit information saved.");
+        assertTrue(result.contains("You saved the account information."), "Edit information saved.");
 
         createAnAccount.addEntryInTable(data);
         editAccountPage.updateEmailInTable(data, data2);

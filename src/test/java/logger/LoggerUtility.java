@@ -13,7 +13,7 @@ public class LoggerUtility {
     private static final Logger logger = LogManager.getLogger();
 
     public static synchronized void errorLog(String errorName){
-        logger.info(Thread.currentThread().getName() + ": " + getCallInfo() + errorName);
+        logger.info("{}: {}{}", Thread.currentThread().getName(), getCallInfo(), errorName);
     }
 
     public static void mergeFilesIntoOne(){
