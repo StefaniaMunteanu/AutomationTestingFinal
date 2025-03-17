@@ -1,14 +1,14 @@
 package helper.classes;
 
 
-import logger.LoggerUtility;
+import com.aventstack.chaintest.plugins.ChainTestListener;
 import data.CreateAnAccountObjectData;
+import database.queries.UserInfoTable;
+import logger.LoggerUtility;
+import org.openqa.selenium.WebDriver;
 import pages.CreateAnAccountPage;
 import pages.EditAccountPage;
 import pages.HomePage;
-import com.aventstack.chaintest.plugins.ChainTestListener;
-import database.queries.UserInfoTable;
-import org.openqa.selenium.WebDriver;
 
 import java.sql.SQLException;
 
@@ -47,10 +47,6 @@ public class CreateAnAccount {
 
     public void addEntryInTable(CreateAnAccountObjectData data) throws SQLException {
         userInfoTable.insertTableObject(data);
-
-
     }
-
-    //
 
 }

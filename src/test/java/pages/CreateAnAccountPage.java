@@ -1,7 +1,7 @@
 package pages;
 
-import helper.methods.ElementsMethod;
 import data.CreateAnAccountObjectData;
+import helper.methods.ElementsMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,12 +11,9 @@ import java.sql.SQLException;
 
 public class CreateAnAccountPage {
     WebDriver driver;
-    ElementsMethod elementsMethod;
-    public String emailFinal;
 
     public CreateAnAccountPage(WebDriver driver) throws SQLException {
         this.driver = driver;
-        this.elementsMethod = new ElementsMethod(driver);
         PageFactory.initElements(driver, this);
 
     }
@@ -40,24 +37,16 @@ public class CreateAnAccountPage {
     WebElement createAnAccountButton;
 
     public void fillCreateAnAccountInfo(CreateAnAccountObjectData data){
-        elementsMethod.writeInTextbox(firstNameField, data.getFirstName());
-        elementsMethod.writeInTextbox(lastNameField, data.getLastName());
-       // emailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
-        elementsMethod.writeInTextbox(emailField, data.getEmail());
-        elementsMethod.writeInTextbox(passwordField, data.getPassword());
-        elementsMethod.writeInTextbox(confirmPasswordField, data.getConfirmPassword());
+        ElementsMethod.writeInTextbox(firstNameField, data.getFirstName());
+        ElementsMethod.writeInTextbox(lastNameField, data.getLastName());
+        ElementsMethod.writeInTextbox(emailField, data.getEmail());
+        ElementsMethod.writeInTextbox(passwordField, data.getPassword());
+        ElementsMethod.writeInTextbox(confirmPasswordField, data.getConfirmPassword());
 
     }
 
     public void clickOnSubmit() {
-        elementsMethod.clickOnElement(createAnAccountButton);
+        ElementsMethod.clickOnElement(createAnAccountButton);
     }
-
-
-
-
-
-
-
 
 }

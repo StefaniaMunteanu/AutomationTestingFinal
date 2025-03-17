@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 
-public class signInObjectData {
+public class SignInObjectData {
     private String email;
     private String password;
 

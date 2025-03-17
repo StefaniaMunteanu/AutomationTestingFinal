@@ -1,9 +1,9 @@
 package pages;
 
-import helper.methods.ElementsMethod;
 import data.CreateAnAccountObjectData;
 import data.EditAccountObjectData;
 import database.queries.UserInfoTable;
+import helper.methods.ElementsMethod;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,12 +13,10 @@ import java.sql.SQLException;
 
 public class EditAccountPage {
     WebDriver driver;
-    ElementsMethod elementsMethod;
     UserInfoTable userInfoTable;
 
     public EditAccountPage(WebDriver driver) throws SQLException {
         this.driver = driver;
-        this.elementsMethod = new ElementsMethod(driver);
         userInfoTable = new UserInfoTable();
         PageFactory.initElements(driver, this);
     }
@@ -53,51 +51,44 @@ public class EditAccountPage {
     @FindBy(xpath = "//*[@class='action save primary']")
     WebElement saveButton;
 
-
-
     public void clickOnEditAccount() {
-        elementsMethod.clickOnElement(editAccountButton);
+        ElementsMethod.clickOnElement(editAccountButton);
     }
 
     public void clickOnSave(){
-        elementsMethod.clickOnElement(saveButton);
+        ElementsMethod.clickOnElement(saveButton);
     }
 
     public void editFirstLastNameInfo(EditAccountObjectData data){
-        elementsMethod.writeInTextbox(firstNameField, data.getFirstName());
-        elementsMethod.writeInTextbox(lastNameField, data.getLastName());
+        ElementsMethod.writeInTextbox(firstNameField, data.getFirstName());
+        ElementsMethod.writeInTextbox(lastNameField, data.getLastName());
     }
 
     public void selectChangeEmailOption() {
-        elementsMethod.clickOnElement(changeEmailCheckbox);
+        ElementsMethod.clickOnElement(changeEmailCheckbox);
     }
 
     public void selectChangePasswordOption() {
-        elementsMethod.clickOnElement(changePasswordCheckbox);
+        ElementsMethod.clickOnElement(changePasswordCheckbox);
     }
 
     public void changeEmailInfo(EditAccountObjectData data) {
 
-        //newEmailFinal = data.getEmail().replace("{random}", System.currentTimeMillis()+"");
-
-      //  elementsMethod.writeInTextbox(emailField, data.getEmail());
-
-        elementsMethod.writeInTextbox(emailField, data.getEmail());
+        ElementsMethod.writeInTextbox(emailField, data.getEmail());
 
     }
 
     public void inputCurrentPassword(String password) {
-        elementsMethod.writeInTextbox(currentPasswordField,password);
+        ElementsMethod.writeInTextbox(currentPasswordField, password);
     }
 
     public void inputNewPassword(EditAccountObjectData data){
-        elementsMethod.writeInTextbox(newPasswordField, data.getNewPassword());
-        elementsMethod.writeInTextbox(newPasswordConfirmationField, data.getConfirmNewPassword());
+        ElementsMethod.writeInTextbox(newPasswordField, data.getNewPassword());
+        ElementsMethod.writeInTextbox(newPasswordConfirmationField, data.getConfirmNewPassword());
     }
 
     public void updateEmailInTable (CreateAnAccountObjectData data, EditAccountObjectData data2) throws SQLException {
         userInfoTable.updateEmailAfterEdit(data, data2);
     }
-
 
 }
